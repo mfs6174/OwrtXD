@@ -3,7 +3,7 @@ cp conf/network /etc/config/
 cp mentohust/mento /usr/sbin/
 chmod +x /usr/sbin/mento
 cp -r mentohust/mentohust /etc/
-opkg install packages/lippcap.ipk
+opkg install packages/libpcap.ipk
 echo "[MentoHUST]
 MaxFail=8
 Username=$3
