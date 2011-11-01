@@ -1,9 +1,16 @@
 #!/bin/sh
+echo "copying and setting config files..."
 cp conf/network /etc/config/
+mv /etc/config/dhcp /etc/config/dhcp.back
+cp conf/dhcp /etc/config/
+mv /usr/share/udhcpc/default.script /usr/share/udhcpc/default.script.back
+cp conf/default.script /usr/share/udhcpc/
+echo "copying and setting bin files..."
 cp mentohust/mento /usr/sbin/
 chmod +x /usr/sbin/mento
 cp -r mentohust/mentohust /etc/
 opkg install packages/libpcap.ipk
+echo "generating config and start.sh..."
 echo "[MentoHUST]
 MaxFail=8
 Username=$3
@@ -38,4 +45,5 @@ mento
 ">>start.sh
 chmod +x start.sh
 cp start.sh /usr/sbin/
+echo "done! just run start.sh to start"
  
