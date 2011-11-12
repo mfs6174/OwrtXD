@@ -31,7 +31,7 @@ ShowNotify=5
 Version=4.60
 DataFile=/etc/mentohust/
 DhcpScript=udhcpc -r $2 -i br-wan
-">>mentohust/mentohust.conf
+">mentohust/mentohust.conf
 cp mentohust/mentohust.conf /etc/
 echo "#!/bin/sh
 ifconfig eth1.1 down
@@ -42,7 +42,7 @@ ifconfig br-wan 0.0.0.0
 ifconfig eth1.1 hw ether $1
 ifconfig br-wan hw ether $1
 mento
-">>start.sh
+">start.sh
 chmod +x start.sh
 cp start.sh /usr/sbin/
 echo "done! just run start.sh to start"
