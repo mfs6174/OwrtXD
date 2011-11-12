@@ -1,7 +1,11 @@
 OwrtXD
 这是一个旨在方便西电等国内高校在校园网环境下用一个使用内置OpenWrt的路由器wifi共享上网的小项目
 第一步
-对手头RG100a路由器进行配置 提供可以快速配置锐捷认证的校园网wifi共享的脚本和二进制文件 使用mentoinit.sh mac ip username passwd 来自动配置mentohust
+对手头RG100a路由器进行配置 提供可以快速配置锐捷认证的校园网wifi共享的脚本和二进制文件 
+如果没有找网管绑定静态IP,仍然伪装成windows用户,在启用V3认证校验前应该没啥问题,使用mentoinit.sh mac ip username passwd 来自动配置mentohust
+如果已经绑定了静态IP,使用mentoinit.static.sh mac ip username passwd gateway 来自动配置mentohust 
+其中的gateway是你们楼的网关,一般是把你的IP最后一段换成254,或者干脆察看附近windows用户的网络属性或者询问网管 
+每次启动路由器执行start.sh连网 mento -k下线
 第二步
 搞定IPv6...
 第三步...
