@@ -1,6 +1,7 @@
 #!/bin/sh
 echo "copying and setting config files..."
-cp conf/network /etc/config/
+echo "    option 'ipaddr' '$2'" >> conf/network.static
+cp conf/network.static /etc/config/network
 mv /etc/config/dhcp /etc/config/dhcp.back
 cp conf/dhcp /etc/config/
 cp conf/resolv.conf /etc/
@@ -30,7 +31,7 @@ ShowNotify=5
 Version=4.60
 DataFile=/etc/mentohust/
 DhcpScript=
-">>mentohust/mentohust.conf
+">mentohust/mentohust.conf
 cp mentohust/mentohust.conf /etc/
 echo "#!/bin/sh
 ifconfig eth1.1 down
@@ -42,7 +43,7 @@ ifconfig eth1.1 hw ether $1
 ifconfig br-wan hw ether $1
 mento
 route add default gw $5
-">>start.sh
+">start.sh
 chmod +x start.sh
 cp start.sh /usr/sbin/
 echo "done! just run start.sh to start"
