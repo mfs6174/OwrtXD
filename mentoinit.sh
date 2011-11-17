@@ -61,11 +61,20 @@ DataFile=/etc/mentohust/
 ">mentohust/mentohust.conf
 if ["$dm"="1"]; then
     echo "DhcpScript=udhcpc -r $2 -i br-wan" >> mentohust/mentohust.conf
+    echo "#!/bin/sh
+ifconfig eth1.1 down
+ifconfig eth1.1 up
+ifconfig br-wan down
+ifconfig br-wan up
+ifconfig br-wan 0.0.0.0
+ifconfig eth1.1 hw ether $1
+ifconfig br-wan hw ether $1
+mento
+route add default gw $5
+">start.sh
 else
     echo "DhcpScript=" >> mentohust/mentohust.conf
-fi
-cp mentohust/mentohust.conf /etc/
-echo "#!/bin/sh
+    echo "#!/bin/sh
 ifconfig eth1.1 down
 ifconfig eth1.1 up
 ifconfig br-wan down
@@ -76,6 +85,8 @@ ifconfig br-wan hw ether $1
 mento
 route add default gw $5
 ">start.sh
+fi
+cp mentohust/mentohust.conf /etc/
 chmod +x start.sh
 cp start.sh /usr/sbin/
 echo "done! just run start.sh to start"
