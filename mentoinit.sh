@@ -21,7 +21,7 @@
 #!/bin/sh
 echo "copying and setting config files..."
 echo "    option 'ipaddr' '$2'" >> conf/network.static
-if ["$6"="1"]; then
+if [ "$6"="1" ]; then
     cp conf/network.static /etc/config/network
     dm="0"
 else
@@ -59,7 +59,7 @@ ShowNotify=5
 Version=4.60
 DataFile=/etc/mentohust/
 ">mentohust/mentohust.conf
-if ["$dm"="1"]; then
+if [ "$dm"="1" ]; then
     echo "DhcpScript=udhcpc -r $2 -i br-wan" >> mentohust/mentohust.conf
     echo "#!/bin/sh
 ifconfig eth1.1 down
