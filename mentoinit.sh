@@ -46,9 +46,9 @@ Password=$4
 Nic=eth1.1
 IP=$2
 Mask=
-Gateway=0.0.0.0
+Gateway=$5
 DNS=0.0.0.0
-PingHost=0.0.0.0
+PingHost=61.134.1.5
 Timeout=8
 EchoInterval=30
 RestartWait=15
@@ -70,7 +70,6 @@ ifconfig br-wan 0.0.0.0
 ifconfig eth1.1 hw ether $1
 ifconfig br-wan hw ether $1
 mento
-route add default gw $5
 ">start.sh
 else
     echo "DhcpScript=" >> mentohust/mentohust.conf
@@ -80,10 +79,10 @@ ifconfig eth1.1 up
 ifconfig br-wan down
 ifconfig br-wan up
 ifconfig br-wan $2 netmask 255.255.255.0
+route add default gw $5
 ifconfig eth1.1 hw ether $1
 ifconfig br-wan hw ether $1
 mento
-route add default gw $5
 ">start.sh
 fi
 cp mentohust/mentohust.conf /etc/
