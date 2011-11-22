@@ -19,6 +19,7 @@
  # You should have received a copy of the GNU General Public License
  # along with OwrtXD.  If not, see <http://www.gnu.org/licenses/>.
 #!/bin/sh
+6="1"
 echo "copying and setting config files..."
 echo "    option 'ipaddr' '$2'" >> conf/network.static
 if [ "$6" = "1" ]; then
