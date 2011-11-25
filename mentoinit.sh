@@ -34,6 +34,9 @@ fi
 mv /etc/config/dhcp /etc/config/dhcp.back
 cp conf/dhcp /etc/config/
 cp conf/resolv.conf /etc/
+if [ "$6" = "1" ]; then
+    sed -iback '/exit 0/i\\start.sh' /etc/rc.local
+fi
 echo "copying and setting bin files..."
 cp mentohust/mento /usr/sbin/
 chmod +x /usr/sbin/mento
