@@ -38,9 +38,15 @@ if [ "$6" = "1" ]; then
     sed -iback '/exit 0/i\\start.sh' /etc/rc.local
 fi
 echo "copying and setting bin files..."
-cp mentohust/mento /usr/sbin/
+if [ "$sta" = "1" ]; then
+    cp mentohust/mento.xd /usr/sbin/mento
+    df=""
+else
+    cp mentohust/mento /usr/sbin/mento
+    cp -r mentohust/mentohust /etc/
+    df="/etc/mentohust"
+fi
 chmod +x /usr/sbin/mento
-cp -r mentohust/mentohust /etc/
 opkg install packages/libpcap.ipk
 echo "generating config and start.sh..."
 echo "[MentoHUST]
@@ -61,7 +67,7 @@ DhcpMode=$dm
 DaemonMode=2
 ShowNotify=5
 Version=4.60
-DataFile=/etc/mentohust/
+DataFile=$df
 ">mentohust/mentohust.conf
 if [ "$dm" = "1" ]; then
     echo "DhcpScript=udhcpc -r $2 -i br-wan" >> mentohust/mentohust.conf
