@@ -18,6 +18,11 @@
  #
  # You should have received a copy of the GNU General Public License
  # along with OwrtXD.  If not, see <http://www.gnu.org/licenses/>.
+
+ # This work is licensed under a Creative Commons Attribution-NonCommercial 2.5 Generic License.
+ # http://creativecommons.org/licenses/by-nc/2.5/
+ # 未经作者授权,绝对不允许用做商业目的!
+
 #!/bin/sh
 sta="1"
 echo "copying and setting config files..."
@@ -42,10 +47,12 @@ echo "copying and setting bin files..."
 if [ "$sta" = "1" ]; then
     cp mentohust/mento.xd /usr/sbin/mento
     df=""
+    dv="0.00"
 else
     cp mentohust/mento /usr/sbin/mento
     cp -r mentohust/mentohust /etc/
     df="/etc/mentohust"
+    dv="4.60"
 fi
 chmod +x /usr/sbin/mento
 opkg install packages/libpcap.ipk
@@ -67,7 +74,7 @@ StartMode=1
 DhcpMode=$dm
 DaemonMode=2
 ShowNotify=5
-Version=4.60
+Version=$dv
 DataFile=$df
 ">mentohust/mentohust.conf
 if [ "$dm" = "1" ]; then
