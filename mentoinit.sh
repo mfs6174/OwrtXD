@@ -39,7 +39,7 @@ fi
 mv /etc/config/dhcp /etc/config/dhcp.back
 cp conf/dhcp /etc/config/
 cp conf/resolv.conf /etc/
-if [ "$6" = "1" ]; then
+if [ "$6" = "0" ]; then
     cp /etc/rc.local /etc/rc.local.back
     sed -i '/exit 0/i\\start.sh' /etc/rc.local
 fi
