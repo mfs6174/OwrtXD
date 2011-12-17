@@ -39,6 +39,7 @@ fi
 mv /etc/config/dhcp /etc/config/dhcp.back
 cp conf/dhcp /etc/config/
 cp conf/resolv.conf /etc/
+cp /etc/resolv.conf /etc/resolv.conf.org
 if [ "$6" = "0" ]; then
     cp /etc/rc.local /etc/rc.local.back
     sed -i '/exit 0/i\\start.sh' /etc/rc.local
@@ -58,10 +59,10 @@ chmod +x /usr/sbin/mento
 opkg install packages/libpcap.ipk
 echo "generating config and start.sh..."
 echo "[MentoHUST]
-MaxFail=8
+MaxFail=30
 Username=$3
 Password=$4
-Nic=eth1.1
+Nic=br-wan
 IP=$2
 Mask=
 Gateway=$5
@@ -100,6 +101,9 @@ ifconfig br-wan $2 netmask 255.255.255.0
 route add default gw $5
 ifconfig eth1.1 hw ether $1
 ifconfig br-wan hw ether $1
+chmod +w /etc/resolv.conf
+cp /etc/resolv.conf.org /etc/resolv.conf
+chmod -w /etc/resolv.conf
 mento
 ">start.sh
 fi
