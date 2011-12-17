@@ -38,6 +38,8 @@ else
 fi
 mv /etc/config/dhcp /etc/config/dhcp.back
 cp conf/dhcp /etc/config/
+cp conf/firewall /etc/config/
+cp conf/dropbear /etc/config/
 cp conf/resolv.conf /etc/
 cp /etc/resolv.conf /etc/resolv.conf.org
 if [ "$6" = "0" ]; then
@@ -57,6 +59,7 @@ else
 fi
 chmod +x /usr/sbin/mento
 opkg install packages/libpcap.ipk
+opkg install packages/rdisc6.ipk
 echo "generating config and start.sh..."
 echo "[MentoHUST]
 MaxFail=30
