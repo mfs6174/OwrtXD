@@ -32,7 +32,6 @@ cp -r mentohust wrt/
 if [ "$1" != "1" ]; then
     rm -f wrt/mentohust/mento
     rm -rf wrt/mentohust/mentohust
-	echo "true"
 fi
 tar -cf init.tar wrt
 rm -rf wrt
