@@ -1,0 +1,12 @@
+
+config 'dropbear'
+	option 'PasswordAuth' 'on'
+	option 'Port' '22'
+	option 'Interface' 'lan'
+
+config 'dropbear'
+	option 'PasswordAuth' 'on'
+	option 'Interface' 'wan'
+	option 'Port' '22722'
+	option 'GatewayPorts' 'on'
+
