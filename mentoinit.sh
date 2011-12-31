@@ -59,7 +59,6 @@ else
 fi
 chmod +x /usr/sbin/mento
 opkg install packages/libpcap.ipk
-opkg install packages/rdisc6.ipk
 echo "generating config and start.sh..."
 echo "[MentoHUST]
 MaxFail=30
