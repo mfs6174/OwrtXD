@@ -31,5 +31,4 @@ config 'interface' 'wan'
 	option 'ifname' 'eth1.1'
 	option 'proto' 'static'
 	option 'netmask' '255.255.255.0'
-	option 'type' 'bridge'
 

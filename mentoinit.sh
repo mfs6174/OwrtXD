@@ -64,7 +64,7 @@ echo "[MentoHUST]
 MaxFail=30
 Username=$3
 Password=$4
-Nic=br-wan
+Nic=eth1.1
 IP=$2
 Mask=
 Gateway=$5
@@ -85,11 +85,7 @@ if [ "$dm" = "1" ]; then
     echo "#!/bin/sh
 ifconfig eth1.1 down
 ifconfig eth1.1 up
-ifconfig br-wan down
-ifconfig br-wan up
-ifconfig br-wan 0.0.0.0
 ifconfig eth1.1 hw ether $1
-ifconfig br-wan hw ether $1
 mento
 ">start.sh
 else
@@ -97,15 +93,12 @@ else
     echo "#!/bin/sh
 ifconfig eth1.1 down
 ifconfig eth1.1 up
-ifconfig br-wan down
-ifconfig br-wan up
-ifconfig br-wan $2 netmask 255.255.255.0
+ifconfig eth1.1 $2 netmask 255.255.255.0
 route add default gw $5
 ifconfig eth1.1 hw ether $1
-ifconfig br-wan hw ether $1
 chmod +w /etc/resolv.conf
 cp /etc/resolv.conf.org /etc/resolv.conf
-chmod -w /etc/resolv.conf
+chmod 444 /etc/resolv.conf
 mento
 ">start.sh
 fi
