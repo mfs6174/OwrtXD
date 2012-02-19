@@ -81,11 +81,15 @@ Version=$dv
 DataFile=$df
 ">mentohust/mentohust.conf
 if [ "$dm" = "1" ]; then
-    echo "DhcpScript=udhcpc -r $2 -i br-wan" >> mentohust/mentohust.conf
+    echo "DhcpScript=udhcpc -r $2 -i eth1.1" >> mentohust/mentohust.conf
     echo "#!/bin/sh
 ifconfig eth1.1 down
 ifconfig eth1.1 up
 ifconfig eth1.1 hw ether $1
+route add default gw $5
+chmod +w /etc/resolv.conf
+cp /etc/resolv.conf.org /etc/resolv.conf
+chmod 444 /etc/resolv.conf
 mento
 ">start.sh
 else
