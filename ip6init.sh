@@ -11,11 +11,12 @@ chmod +x /usr/sbin/npd6
 echo "setting config files..."
 sed "/list prefix-m/c\\        list prefix             '$1::/64'" conf/radvd > /etc/config/radvd
 sed "/prefix=/c\\prefix = $1:" npd6/npd6.conf > /etc/npd6.conf
-sed  "/config 'interface' 'wan'/a\\option 'ip6addr' '$1::7/126'" conf/network.static > network.tmp
-sed -i "/config 'interface' 'lan'/a\\option 'ip6addr' '$1::3/64'" network.tmp
+sed  "/config 'interface' 'wan'/a\\option 'ip6addr' '$1$3/124'" conf/network.static > network.tmp
+sed -i "/config 'interface' 'lan'/a\\option 'ip6addr' '$1$2/64'" network.tmp
 mv network.tmp /etc/config/network	
 echo "setting ip6.sh and auto start"
 /etc/init.d/radvd enable
+sed -i "/sleep 4/i\\ip -6 address add $1$3/124 dev eth1.1" ip6.sh
 chmod +x ip6.sh
 cp ip6.sh /usr/sbin/
 cp /etc/rc.local /etc/rc.local.back2
