@@ -16,6 +16,7 @@ sed -i "/config 'interface' 'lan'/a\\option 'ip6addr' '$1$2/64'" network.tmp
 mv network.tmp /etc/config/network	
 echo "setting ip6.sh and auto start"
 /etc/init.d/radvd enable
+sed -i "/sleep 4/i\\ip -6 route del $1::/64 dev eth1" ip6.sh
 sed -i "/sleep 4/i\\ip -6 address add $1$3/124 dev eth1.1" ip6.sh
 chmod +x ip6.sh
 cp ip6.sh /usr/sbin/
